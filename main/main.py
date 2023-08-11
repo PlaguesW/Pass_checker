@@ -2,10 +2,10 @@ digits = [c for c in '0123456789']
 lower_letters = [c for c in 'abcdefghijklmnopqrstuvwxyz']
 upper_letters = [c for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
 punctuation = [c for c in '!#$%&*+-=?@^_']
-num_pass, chars = input('Введите количество паролей для генерации: '), []
+num_pass, chars = input('Entee amount of passwords to generate: '), []
 while 1:  # Check of correct numbers of passwords
     if not str(num_pass).isdigit() or int(num_pass) < 0:
-        print('Пожалуйста, введите натуральное число: ')
+        print('Plese enter a natural number: ')
         num_pass = input()
     else:
         num_pass = int(num_pass)
@@ -13,10 +13,10 @@ while 1:  # Check of correct numbers of passwords
 from random import *
 
 len_pass = input(
-    'Введите длину одного пароля. Пароль должен содержать не менее 8 символов: ')
+    'Enter the length of one password. Password must contain at least 8 Characters: ')
 while 1:  # Check of correct lenght of passwords
     if not str(len_pass).isdigit() or int(len_pass) < 7:
-        print('Пожалуйста, введите натуральное число больше 7')
+        print('Please enter a positive natural number greater than 7:')
         len_pass = input()
     else:
         len_pass = int(len_pass)
@@ -27,20 +27,20 @@ def valid_1_0():  # Check of correctness input 1 or 0
     while 1:
         ans = input()
         if ans not in str(10):
-            print('Пожалуйста, введите 1 или 0')
+            print('Please enter 1 or 0')
         else:
             return int(ans)
 
 
-print('Включать ли цифры 0123456789? Да - введите 1, нет - 0.')
+print('Include the numbers 0123456789? Yes - Enter 1, No - Enter 0.')
 include_digits = valid_1_0()
-print('Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz? Да - введите 1, нет - 0')
+print('Include lowercase letters abcdefghijklmnopqrstuvwxyz? Yes - Enter 1, No - Enter 0')
 with_lower_letters = valid_1_0()
-print('Включать ли прописные буквы ABCDEFGHIJKLMNOPQRSTUVWXYZ? Да - введите 1, нет - 0')
+print('Include upercase letters ABCDEFGHIJKLMNOPQRSTUVWXYZ? Yes - Enter 1, No - Enter 0')
 with_upper_letters = valid_1_0()
-print('Включать ли символы!#$%&*+-=?@^_? Да - введите 1, нет - 0')
+print('Include symbols !#$%&*+-=?@^_? Yes - Enter 1, No - Enter 0')
 with_punctuation = valid_1_0()
-print('Исключать ли неоднозначные символы il1Lo0O? Да - введите 1, нет - введите 0.')
+print('Exclude ambiguous characters il1Lo0O? Yes - Enter 1, No - Enter 0.')
 exclude = valid_1_0()
 if exclude:  # avoiding of ambiguous characters
     digits.remove('0')
