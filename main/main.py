@@ -35,11 +35,11 @@ def valid_1_0():  # Check of correctness input 1 or 0
 print('Include the numbers 0123456789? Yes - Enter 1, No - Enter 0.')
 include_digits = valid_1_0()
 print('Include lowercase letters abcdefghijklmnopqrstuvwxyz? Yes - Enter 1, No - Enter 0')
-with_lower_letters = valid_1_0()
+include_lowercase_let = valid_1_0()
 print('Include uppercase letters ABCDEFGHIJKLMNOPQRSTUVWXYZ? Yes - Enter 1, No - Enter 0')
-with_upper_letters = valid_1_0()
+include_uppercase_let = valid_1_0()
 print('Include symbols !#$%&*+-=?@^_? Yes - Enter 1, No - Enter 0')
-with_punctuation = valid_1_0()
+include_punctuation = valid_1_0()
 print('Exclude ambiguous characters il1Lo0O? Yes - Enter 1, No - Enter 0.')
 exclude = valid_1_0()
 if exclude:  # avoiding of ambiguous characters
@@ -60,35 +60,35 @@ def chars_app(lists, n):  # Adding characters to the password
 
 
 def generate_password():
-    volume_digits = volume_lower_letters = volume_upper_letters = volume_punctuation = 0
+    vol_digits = vol_lowercase = vol_upper = volume_punctuation = 0
     if include_digits:  # Random selection of the numbers of digits in the password include other symbols
-        volume_digits = randint(1, (len_pass - with_lower_letters - with_upper_letters -
-                                    with_punctuation))
-    if with_lower_letters:  # Random selection of the numbers of lowercase letters in the password include other symbols
-        volume_lower_letters = randint(1, (len_pass - with_upper_letters - with_punctuation -
-                                           volume_digits))
-    if with_upper_letters:  # Random selection of the numbers of uppercase letters in the password include other symbols
-        volume_upper_letters = randint(1, (len_pass - with_punctuation - volume_lower_letters -
-                                           volume_digits))
-    if with_punctuation:   # Determining the numbeer of characters !#$%&*+-=?@^_ in the password include other symbols
-        volume_punctuation = (len_pass - volume_digits - volume_lower_letters - volume_upper_letters)
-    #  print(volume_digits, volume_lower_letters, volume_upper_letters, volume_punctuation)
+        vol_digits = randint(1, (len_pass - include_lowercase_let - include_uppercase_let -
+                                    include_punctuation))
+    if include_lowercase_let:  # Random selection of the numbers of lowercase letters in the password include other symbols
+        vol_lowercase = randint(1, (len_pass - include_uppercase_let - include_punctuation -
+                                    vol_digits))
+    if include_uppercase_let:  # Random selection of the numbers of uppercase letters in the password include other symbols
+        vol_upper = randint(1, (len_pass - include_punctuation - vol_lowercase -
+                                           vol_digits))
+    if include_punctuation:   # Determining the numbeer of characters !#$%&*+-=?@^_ in the password include other symbols
+        volume_punctuation = (len_pass - vol_digits - vol_lowercase - vol_upper)
+    #  print(vol_digits, volume_lower_letters, vol_upper, volume_punctuation)
     # addition of the password length to the entered one if all 4 types of symbols are involved:
-    if len_pass > volume_digits + volume_lower_letters + volume_upper_letters + volume_punctuation:
-        volume_digits = (len_pass - volume_lower_letters - volume_upper_letters - volume_punctuation) * include_digits
-        volume_lower_letters = (len_pass - volume_digits - volume_upper_letters - volume_punctuation) \
-                               * with_lower_letters
-        volume_upper_letters = (len_pass - volume_digits - volume_lower_letters - volume_punctuation) \
-                               * with_upper_letters
-        volume_punctuation = (len_pass - volume_digits - volume_lower_letters - volume_upper_letters) \
-                             * with_punctuation
-    n = volume_digits
+    if len_pass > vol_digits + vol_lowercase + vol_upper + volume_punctuation:
+        vol_digits = (len_pass - vol_lowercase - vol_upper - volume_punctuation) * include_digits
+        vol_lowercase = (len_pass - vol_digits - vol_upper - volume_punctuation) \
+                        * include_lowercase_let
+        vol_upper = (len_pass - vol_digits - vol_lowercase - volume_punctuation) \
+                               * include_uppercase_let
+        volume_punctuation = (len_pass - vol_digits - vol_lowercase - vol_upper) \
+                             * include_punctuation
+    n = vol_digits
     lists = digits
     chars_app(lists, n)  # Adding numbers to password
-    n = volume_lower_letters
+    n = vol_lowercase
     lists = lowercase_let
     chars_app(lists, n)  # Adding lowercase letters to password
-    n = volume_upper_letters
+    n = vol_upper
     lists = uppercase_let
     chars_app(lists, n)  # Adding uppercase letters to password
     n = volume_punctuation
