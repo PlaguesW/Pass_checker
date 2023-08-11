@@ -1,11 +1,11 @@
 digits = [i for i in '0123456789']
-lower_letters = [i for i in 'abcdefghijklmnopqrstuvwxyz']
-upper_letters = [i for i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+lowercase_let = [i for i in 'abcdefghijklmnopqrstuvwxyz']
+uppercase_let = [i for i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
 punctuation = [i for i in '!#$%&*+-=?@^_']
 num_pass, chars = input('Enter amount of passwords to generate: '), []
 while 1:  # Check of correct numbers of passwords
     if not str(num_pass).isdigit() or int(num_pass) < 0:
-        print('Please enter a natural number: ')
+        print('Please enter a positive natural number: ')
         num_pass = input()
     else:
         num_pass = int(num_pass)
@@ -45,11 +45,11 @@ exclude = valid_1_0()
 if exclude:  # avoiding of ambiguous characters
     digits.remove('0')
     digits.remove('1')
-    lower_letters.remove('i')
-    lower_letters.remove('l')
-    lower_letters.remove('o')
-    upper_letters.remove('L')
-    upper_letters.remove('O')
+    lowercase_let.remove('i')
+    lowercase_let.remove('l')
+    lowercase_let.remove('o')
+    uppercase_let.remove('L')
+    uppercase_let.remove('O')
 
 
 def chars_app(lists, n):  # Adding characters to the password
@@ -86,10 +86,10 @@ def generate_password():
     lists = digits
     chars_app(lists, n)  # Adding numbers to password
     n = volume_lower_letters
-    lists = lower_letters
+    lists = lowercase_let
     chars_app(lists, n)  # Adding lowercase letters to password
     n = volume_upper_letters
-    lists = upper_letters
+    lists = uppercase_let
     chars_app(lists, n)  # Adding uppercase letters to password
     n = volume_punctuation
     lists = punctuation
