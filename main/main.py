@@ -1,7 +1,7 @@
-digits = [c for c in '0123456789']
-lower_letters = [c for c in 'abcdefghijklmnopqrstuvwxyz']
-upper_letters = [c for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
-punctuation = [c for c in '!#$%&*+-=?@^_']
+digits = [i for i in '0123456789']
+lower_letters = [i for i in 'abcdefghijklmnopqrstuvwxyz']
+upper_letters = [i for i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+punctuation = [i for i in '!#$%&*+-=?@^_']
 num_pass, chars = input('Enter amount of passwords to generate: '), []
 while 1:  # Check of correct numbers of passwords
     if not str(num_pass).isdigit() or int(num_pass) < 0:
@@ -61,19 +61,19 @@ def chars_app(lists, n):  # Adding characters to the password
 
 def generate_password():
     volume_digits = volume_lower_letters = volume_upper_letters = volume_punctuation = 0
-    if include_digits:  # случайный выбор количества цифр в пароле с учетом остальных символов
+    if include_digits:  # Random selection of the numbers of digits in the password include other symbols
         volume_digits = randint(1, (len_pass - with_lower_letters - with_upper_letters -
                                     with_punctuation))
-    if with_lower_letters:  # случайный выбор количества строчных букв в пароле с учетом остальных символов
+    if with_lower_letters:  # Random selection of the numbers of lowercase letters in the password include other symbols
         volume_lower_letters = randint(1, (len_pass - with_upper_letters - with_punctuation -
                                            volume_digits))
-    if with_upper_letters:  # случайный выбор количества прописных букв в пароле с учетом остальных символов
+    if with_upper_letters:  # Random selection of the numbers of uppercase letters in the password include other symbols
         volume_upper_letters = randint(1, (len_pass - with_punctuation - volume_lower_letters -
                                            volume_digits))
-    if with_punctuation:   # определение количества знаков !#$%&*+-=?@^_ в пароле с учетом остальных символов
+    if with_punctuation:   # Determining the numbeer of characters !#$%&*+-=?@^_ in the password include other symbols
         volume_punctuation = (len_pass - volume_digits - volume_lower_letters - volume_upper_letters)
     #  print(volume_digits, volume_lower_letters, volume_upper_letters, volume_punctuation)
-    # дополнение длины пароля до введенной, если задействованы не все 4 вида символов:
+    # addition of the password length to the entered one if all 4 types of symbols are involved:
     if len_pass > volume_digits + volume_lower_letters + volume_upper_letters + volume_punctuation:
         volume_digits = (len_pass - volume_lower_letters - volume_upper_letters - volume_punctuation) * include_digits
         volume_lower_letters = (len_pass - volume_digits - volume_upper_letters - volume_punctuation) \
@@ -84,17 +84,17 @@ def generate_password():
                              * with_punctuation
     n = volume_digits
     lists = digits
-    chars_app(lists, n)  # добавление в пароль цифр
+    chars_app(lists, n)  # Adding numbers to password
     n = volume_lower_letters
     lists = lower_letters
-    chars_app(lists, n)  # добавление в пароль строчных букв
+    chars_app(lists, n)  # Adding lowercase letters to password
     n = volume_upper_letters
     lists = upper_letters
-    chars_app(lists, n)  # добавление в пароль прописных букв
+    chars_app(lists, n)  # Adding uppercase letters to password
     n = volume_punctuation
     lists = punctuation
-    chars_app(lists, n)  # добавление в пароль символов
-    shuffle(chars)  # перемешиваем список
+    chars_app(lists, n)  # Adding symbols to password
+    shuffle(chars)  # Shuffle the list
     print(*chars, sep='')
 
 
